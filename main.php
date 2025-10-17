@@ -20,20 +20,17 @@ if ($email == '') {
 }
 if ($password == '') {
   $errors[] = "Senha precisa ser informada";
-}
-if ($confirmPassword == '') {
-  $errors[] = "Confime a senha";
-}
-
-if (strlen($password) < 6) {
-  $errors[] = "Senha muito curta, adicione mais caracteres";
-} elseif (preg_match('/^[a-zA-Z]+$/', $password)) {
-  $errors[] = "Senha fraca, adicione números ou caracteres especiais.";
-}
-
-if ($password !==  $confirmPassword) {
-  $errors[] = "Senhas nao batem";
-  echo 'senhas nao batem echo';
+} else {
+  if (strlen($password) < 6) {
+    $errors[] = "Senha muito curta, adicione mais caracteres";
+  } elseif (preg_match('/^[a-zA-Z]+$/', $password)) {
+    $errors[] = "Senha fraca, adicione números ou caracteres especiais.";
+  }
+  if ($confirmPassword == '') {
+    $errors[] = "Confime a senha";
+  } else  if ($password !==  $confirmPassword) {
+    $errors[] = "Senhas nao batem";
+  }
 }
 
 if (count($errors) > 0) {
